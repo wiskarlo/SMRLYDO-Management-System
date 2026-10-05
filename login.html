@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Login - SMRLYDO</title>
+
+  <!-- Modern Fonts matching system aesthetic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style/main.css">
+</head>
+<body class="login-body">
+
+  <div class="login-wrapper">
+    <div id="bgSlider" class="bg-slider"></div>
+
+    <div class="login-overlay">
+      
+      <div class="login-hero-text">
+        <h1>San Mateo Rizal Local Youth Development Office (SMRLYDO)</h1>
+        <p>Empowering the youth of San Mateo, Rizal through leadership development, civic engagement, and community-driven youth programs.</p>
+        <a href="index.html" class="btn-return-home">&larr; Back to Official Portal</a>
+      </div>
+
+      <div class="login-card-container">
+        <div class="login-card">
+          <h2>USER LOGIN</h2>
+          
+          <form id="loginForm">
+            <div class="login-field">
+              <label for="email">Email Address</label>
+              <div class="input-with-icon">
+                <span class="icon">👤</span>
+                <input type="email" id="email" class="login-input" placeholder="e.g. admin@gmail.com" required autocomplete="username">
+              </div>
+            </div>
+
+            <div class="login-field">
+              <label for="password">Password</label>
+              <div class="input-with-icon">
+                <span class="icon">🔒</span>
+                <input type="password" id="password" class="login-input" placeholder="••••••••••••" required autocomplete="current-password">
+              </div>
+              <div class="login-sublinks">
+                <a href="#" class="forgot-link">Forgot Password?</a>
+              </div>
+            </div>
+
+            <div id="loginError" style="display: none; background: #fee2e2; border: 1px solid #ef4444; color: #b91c1c; padding: 0.6rem; border-radius: 6px; font-size: 0.85rem; margin-bottom: 1rem; text-align: center;">
+              Invalid credentials. Please check your email or password.
+            </div>
+
+            <button type="submit" class="btn-login-submit">Sign In</button>
+
+            <div class="signup-prompt">
+              Don't have an account? <a href="#"> Sign Up</a>
+            </div>
+
+            <p class="login-motto">
+              Empowering San Mateo Youth: Leading Today, Shaping Tomorrow.
+            </p>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="script/slider.js"></script>
+
+  <script src="script/login.js"></script>
+  
+</body>
+</html>
