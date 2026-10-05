@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Volunteer QR Scanner - SMRLYDO</title>
+  <link rel="stylesheet" href="../style/user-style.css">
+</head>
+<body>
+
+  <div class="volunteer-bg-wrapper"></div>
+  <div class="volunteer-overlay"></div>
+
+  <nav class="navbar-volunteer">
+    <div class="navbar-brand">SMRLYDO &bull; Volunteer Portal</div>
+    <ul class="nav-links">
+      <li><a href="dashboard.html">Duty Hub</a></li>
+      <li><a href="scanner.html" class="active">Scan QR</a></li>
+      <li><a href="../login.html" class="logout-link">Sign Out</a></li>
+    </ul>
+  </nav>
+
+  <main class="user-container">
+    <div class="prototype-card" style="text-align: center;">
+      <div class="card-title-row" style="text-align: left;">
+        <div>
+          <h2>Participant Attendance Scanner</h2>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.3rem;">
+            Scan youth participant badges to log arrival time into the attendance database.
+          </p>
+        </div>
+      </div>
+
+      <div class="scanner-viewport">
+        <div class="scanner-target-reticle"></div>
+        <p style="position: absolute; bottom: 15px; font-size: 0.8rem; color: #94a3b8; letter-spacing: 0.05em;">
+          ALIGN PARTICIPANT QR BADGE HERE
+        </p>
+      </div>
+
+      <div style="margin-top: 1.5rem;">
+        <button type="button" class="btn-primary" onclick="triggerAttendanceScan()">
+          Simulate Camera QR Scan
+        </button>
+      </div>
+
+      <div id="scanFeedback" style="display:none; margin-top:1.25rem; background:#dcfce7; border:1px solid #86efac; color:#15803d; padding:0.85rem; border-radius:8px; font-size:0.9rem; font-weight:600;">
+        Attendance Recorded: Jasmine Annika Pereye &bull; Check-in logged at <span id="scanTimestamp"></span>
+    </div>
+  </main>
+
+  <script>
+    function triggerAttendanceScan() {
+      const feedback = document.getElementById('scanFeedback');
+      const timeSpan = document.getElementById('scanTimestamp');
+      
+      timeSpan.innerText = new Date().toLocaleTimeString();
+      feedback.style.display = 'block';
+
+      // Auto-hide alert after 4 seconds
+      setTimeout(() => {
+        feedback.style.display = 'none';
+      }, 4000);
+    }
+  </script>
+
+</body>
+</html>

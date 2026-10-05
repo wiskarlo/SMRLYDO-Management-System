@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Volunteer Hub - SMRLYDO</title>
+  <link rel="stylesheet" href="../style/user-style.css">
+</head>
+<body>
+
+  <div class="volunteer-bg-wrapper"></div>
+  <div class="volunteer-overlay"></div>
+
+  <nav class="navbar-volunteer">
+    <div class="navbar-brand">SMRLYDO &bull; Volunteer Portal</div>
+    <ul class="nav-links">
+      <li><a href="dashboard.html" class="active">Duty Hub</a></li>
+      <li><a href="scanner.html">Scan QR</a></li>
+      <li><a href="../login.html" class="logout-link">Sign Out</a></li>
+    </ul>
+  </nav>
+
+  <main class="user-container">
+    <div class="prototype-card">
+      <div class="card-title-row">
+        <div>
+          <h2>Event Duty Station</h2>
+          <p style="color:var(--text-muted); font-size:0.9rem; margin-top:0.3rem;">
+            On-site participant attendance tracking & check-in terminal.
+          </p>
+        </div>
+        <span class="card-badge">Operational Duty</span>
+      </div>
+
+        <div style="margin-top:1.5rem; margin-bottom:1.5rem;">
+          <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.4;">
+            As a volunteer, you are assigned to operate the QR scanner terminal for participant check-ins at the event registration desk. Your role is crucial in ensuring accurate attendance records for the youth programs.
+         </p>
+        <div class="metrics-row">
+        <div class="metric-box">
+          <span>Assigned Program</span>
+          <h4 style="font-size:1.1rem; line-height:1.3; margin-top:0.4rem;">CSO Youth Academy 2026</h4>
+        </div>
+        <div class="metric-box">
+          <span>Target Attendees</span>
+          <h4>60</h4>
+        </div>
+        <div class="metric-box">
+          <span>Your Scans</span>
+          <h4 id="volunteerScanCount" style="color:#0b57d0;">50</h4>
+        </div>
+      </div>
+
+      <div style="background:#f8fafc; border:1px solid var(--border-color); border-radius:8px; padding:1.25rem; margin-bottom:2rem;">
+        <h4 style="font-size:1rem; margin-bottom:0.5rem; color:#0f172a;">Assigned Volunteer Responsibility</h4>
+        <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.5;">
+          Per system specifications, volunteers operate the QR terminal to verify and check in arriving youth participants at the event registration desk.
+        </p>
+      </div>
+
+      <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+        <a href="scanner.html" class="btn-primary">
+          <span>Launch Attendance QR Scanner</span>
+          <span>&rarr;</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>
