@@ -1,0 +1,423 @@
+/* ============================================================
+   1. GLOBAL VARIABLES & RESET
+============================================================ */
+:root {
+  --staff-red: #c92a2a;
+  --staff-red-hover: #a61e1e;
+  --user-dark: #0b1120;
+  --card-bg: #ffffff;
+  --border-subtle: #f1f5f9;
+  --border-color: #e2e8f0;
+  --text-dark: #0f172a;
+  --text-muted: #64748b;
+  --btn-blue: #0b57d0;
+  --btn-blue-hover: #084298;
+  --badge-green-bg: #dcfce7;
+  --badge-green: #15803d;
+  --badge-amber-bg: #fef9c3;
+  --badge-amber: #a16207;
+  --badge-red-bg: #fee2e2;
+  --badge-red: #b91c1c;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--text-dark);
+  background-color: var(--user-dark);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ============================================================
+   2. BACKGROUND IMAGE & OVERLAYS
+============================================================ */
+.staff-bg-wrapper {
+  position: fixed;
+  inset: 0;
+  background: url('../images/youth1.png') center/cover no-repeat;
+  z-index: 0;
+}
+
+.staff-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.78) 0%,
+    rgba(15, 23, 42, 0.58) 50%,
+    rgba(15, 23, 42, 0.85) 100%
+  );
+  z-index: 1;
+}
+
+/* ============================================================
+   3. NAVIGATION BAR
+============================================================ */
+.navbar-staff {
+  position: relative;
+  z-index: 10;
+  background-color: var(--staff-red);
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.95rem 3.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+}
+
+.navbar-brand {
+  font-weight: 800;
+  font-size: 1.35rem;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.8rem;
+  align-items: center;
+}
+
+.nav-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 500;
+  opacity: 0.9;
+  transition: opacity 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  opacity: 1;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+.nav-links .logout-link {
+  background: rgba(0, 0, 0, 0.25);
+  color: #ffffff;
+  padding: 0.4rem 1.1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-decoration: none !important;
+}
+
+.nav-profile-icon {
+  font-size: 1.4rem;
+  color: #ffffff;
+  text-decoration: none !important;
+  margin-left: 0.5rem;
+}
+
+/* ============================================================
+   4. LAYOUT & CONTAINERS
+============================================================ */
+/* Main Container */
+.staff-container {
+  position: relative;
+  z-index: 5;
+  padding: 2.5rem 1.5rem;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+/* Big Underlined Header */
+.banner-heading-wrap {
+  margin-bottom: 2rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.85);
+  padding-bottom: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.banner-heading {
+  font-size: 2.3rem;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-shadow: 0 4px 14px rgba(0, 0, 0, 0.7);
+  line-height: 1.2;
+}
+
+.prototype-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 2.5rem 2.8rem;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+}
+
+.card-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.card-header-row h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+/* ============================================================
+   5. METRICS GRID & CARDS
+============================================================ */
+/* Metrics Row */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+  margin-bottom: 1.6rem;
+}
+
+.metric-card {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 1.2rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.metric-card span {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.metric-card h3 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0.4rem 0;
+  color: var(--text-dark);
+}
+
+/* ============================================================
+   6. BUTTONS & CONTROLS
+============================================================ */
+/* Buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--staff-red);
+  color: #ffffff;
+  padding: 0.65rem 1.4rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: var(--staff-red-hover);
+}
+
+.btn-blue {
+  background-color: var(--btn-blue);
+  color: #ffffff;
+  border: none;
+  padding: 0.65rem 1.6rem;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-blue:hover {
+  background-color: var(--btn-blue-hover);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  background-color: #f1f5f9;
+  color: #334155;
+  padding: 0.65rem 1.2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.88rem;
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+}
+
+/* ============================================================
+   7. FORM INPUTS
+============================================================ */
+/* Form Inputs */
+.form-control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  outline: none;
+  background: #ffffff;
+}
+
+.form-control:focus {
+  border-color: var(--staff-red);
+}
+
+/* ============================================================
+   8. BADGES & STATUS TAGS
+============================================================ */
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.badge-ongoing { background: var(--badge-amber-bg); color: var(--badge-amber); }
+.badge-completed { background: var(--badge-green-bg); color: var(--badge-green); }
+.badge-clean { background: #dcfce7; color: #15803d; }
+.badge-duplicate { background: #fee2e2; color: #b91c1c; }
+
+/* ============================================================
+   9. TABLES
+============================================================ */
+/* Table Styling */
+.staff-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+  font-size: 0.92rem;
+}
+
+.staff-table th {
+  padding: 0.9rem 0.6rem;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-muted);
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.staff-table td {
+  padding: 1.15rem 0.6rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* ============================================================
+   10. MODALS & POPUPS
+============================================================ */
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.75);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 1.5rem;
+}
+
+.modal-window {
+  background: #ffffff;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 14px;
+  padding: 2.2rem;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* ============================================================
+   11. SCANNER COMPONENT
+============================================================ */
+.scanner-feed {
+  height: 260px;
+  background: #0f172a;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  position: relative;
+  border: 2px solid #334155;
+}
+
+.reticle {
+  width: 150px;
+  height: 150px;
+  border: 2px dashed #38bdf8;
+  border-radius: 10px;
+  animation: scanPulse 2s infinite;
+}
+
+@keyframes scanPulse {
+  0%, 100% { transform: scale(1); border-color: #38bdf8; }
+  50% { transform: scale(1.05); border-color: #60a5fa; }
+}
+
+/* ============================================================
+   12. EVALUATION FORM & LIKERT SCALE
+============================================================ */
+.eval-split-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  margin-top: 1.5rem;
+}
+
+.likert-scale {
+  display: flex;
+  gap: 1.2rem;
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.likert-scale label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* ============================================================
+   13. RESPONSIVE MEDIA QUERIES
+============================================================ */
+@media (max-width: 860px) {
+  .eval-split-layout { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+
+@media (max-width: 768px) {
+  .navbar-staff { padding: 1rem 1.5rem; }
+  .staff-container { padding: 2rem 1rem; }
+  .prototype-card { padding: 1.6rem 1.2rem; }
+  .metrics-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,574 @@
+:root {
+  --admin-blue: #0b57d0;
+  --admin-blue-hover: #084298;
+  --user-dark: #0b1120;
+  --card-bg: #ffffff;
+  --border-subtle: #e2e8f0;
+  --border-color: #e2e8f0;
+  --text-dark: #0f172a;
+  --text-muted: #64748b;
+  --badge-green-bg: #dcfce7;
+  --badge-green: #15803d;
+  --badge-amber-bg: #fef9c3;
+  --badge-amber: #a16207;
+  --badge-red-bg: #fee2e2;
+  --badge-red: #b91c1c;
+  --badge-completed: #10b981;
+  --badge-ongoing: #facc15;
+  --badge-cancelled: #ef4444;
+  --signout-bg: rgba(0, 0, 0, 0.22);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--text-dark);
+  background-color: var(--user-dark);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ============================================================
+   1. BACKGROUND & OVERLAY (Fixed to youth1.png)
+============================================================ */
+.admin-bg-wrapper {
+  position: fixed;
+  inset: 0;
+  background: url('../images/youth1.png') center/cover no-repeat;
+  z-index: 0;
+}
+
+.admin-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.78) 0%,
+    rgba(15, 23, 42, 0.60) 50%,
+    rgba(15, 23, 42, 0.85) 100%
+  );
+  z-index: 1;
+}
+
+/* ============================================================
+   2. TOP MUNICIPAL BLUE NAVBAR
+============================================================ */
+.navbar-admin {
+  position: relative;
+  z-index: 10;
+  background-color: var(--admin-blue);
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.95rem 3.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+}
+
+.navbar-brand {
+  font-weight: 800;
+  font-size: 1.35rem;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.8rem;
+  align-items: center;
+}
+
+.nav-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 500;
+  opacity: 0.9;
+  transition: opacity 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  opacity: 1;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+.nav-links .logout-link {
+  background: var(--signout-bg);
+  color: #ffffff;
+  padding: 0.4rem 1.1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-decoration: none !important;
+}
+
+.nav-links .logout-link:hover {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.nav-profile-icon {
+  font-size: 1.4rem;
+  color: #ffffff;
+  text-decoration: none !important;
+  margin-left: 0.5rem;
+}
+
+/* ============================================================
+   3. SHARED PAGE CONTAINERS (Both admin-container & programs-container)
+============================================================ */
+.admin-container,
+.programs-container {
+  position: relative;
+  z-index: 5; /* Critical: keeps content above .admin-overlay */
+  padding: 2.5rem 1.5rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Prototype Card (Dashboard, Management, Reports) */
+.prototype-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 2.6rem 2.8rem;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+}
+
+/* Unified Headers */
+.card-title-row,
+.card-header-row,
+.programs-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--border-subtle);
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.card-title-row h2,
+.card-header-row h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-dark);
+}
+
+.page-title {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 0.04em;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   4. METRICS GRID & CARDS (Dashboard & Reports)
+============================================================ */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+  margin-bottom: 1.6rem;
+}
+
+.metric-card {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 1.2rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.metric-card span {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.metric-card h3 {
+  font-size: 2.1rem;
+  font-weight: 800;
+  margin: 0.4rem 0;
+  color: var(--text-dark);
+}
+
+/* ============================================================
+   5. BUTTONS & FORM INPUTS
+============================================================ */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--admin-blue);
+  color: #ffffff;
+  padding: 0.75rem 1.6rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.92rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-primary:hover {
+  background-color: var(--admin-blue-hover);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: #f1f5f9;
+  color: #334155;
+  padding: 0.75rem 1.4rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.92rem;
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-secondary:hover {
+  background-color: #e2e8f0;
+}
+
+.btn-add-program {
+  background-color: #ffffff;
+  color: var(--admin-blue);
+  border: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.65rem 1.4rem;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  transition: all 0.2s ease;
+}
+
+.btn-add-program:hover {
+  background-color: #f1f5f9;
+  transform: translateY(-2px);
+}
+
+.form-control {
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  outline: none;
+  background: #ffffff;
+}
+
+.form-control:focus {
+  border-color: var(--admin-blue);
+}
+
+/* ============================================================
+   6. BADGES
+============================================================ */
+.badge {
+  display: inline-block;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.badge-completed { background: var(--badge-green-bg); color: var(--badge-green); }
+.badge-ongoing { background: var(--badge-amber-bg); color: var(--badge-amber); }
+.badge-cancelled { background: var(--badge-red-bg); color: var(--badge-red); }
+
+.badge-capsule {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.38rem 0.9rem;
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.badge-capsule.completed { background-color: var(--badge-completed); }
+.badge-capsule.ongoing { background-color: var(--badge-ongoing); color: #0f172a; }
+.badge-capsule.cancelled { background-color: var(--badge-cancelled); }
+
+/* ============================================================
+   7. PROGRAM CARDS & SLIDER (Programs Tab)
+============================================================ */
+.programs-slider {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.8rem;
+  padding-bottom: 1.5rem;
+}
+
+.program-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease;
+}
+
+.program-card:hover {
+  transform: translateY(-4px);
+}
+
+.program-card-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  flex-shrink: 0;
+  display: block;
+  background-color: #cbd5e1;
+}
+
+.program-card-body {
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.card-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.35;
+  margin-bottom: 0.75rem;
+}
+
+.program-meta {
+  font-size: 0.85rem;
+  color: #475569;
+  margin-bottom: 0.35rem;
+  line-height: 1.4;
+}
+
+.program-card-footer {
+  margin-top: 1.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 1rem;
+}
+
+.card-action-group {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.btn-action-edit {
+  background-color: var(--admin-blue);
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  border: none;
+  padding: 0.45rem 1.15rem;
+  border-radius: 999px;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: background-color 0.2s;
+}
+
+.btn-action-edit:hover {
+  background-color: var(--admin-blue-hover);
+}
+
+.btn-action-delete {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  font-size: 0.78rem;
+  font-weight: 700;
+  border: 1px solid #fca5a5;
+  padding: 0.42rem 0.95rem;
+  border-radius: 999px;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: all 0.2s;
+}
+
+.btn-action-delete:hover {
+  background-color: #ef4444;
+  color: #ffffff;
+  border-color: #ef4444;
+}
+
+.slider-scrollbar-track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.slider-arrow-btn {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.slider-track-line {
+  width: 50%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  position: relative;
+}
+
+.slider-thumb {
+  position: absolute;
+  top: -3px;
+  left: 45%;
+  width: 55px;
+  height: 12px;
+  background: #ffffff;
+  border-radius: 999px;
+}
+
+/* ============================================================
+   8. DATA TABLES (Management & Reports)
+============================================================ */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.admin-table th {
+  padding: 0.85rem 0.75rem;
+  border-bottom: 2px solid var(--border-subtle);
+  color: var(--text-muted);
+  text-align: left;
+  font-size: 0.8rem;
+  background: #f8fafc;
+}
+
+.admin-table td {
+  padding: 0.9rem 0.75rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* ============================================================
+   9. REPORTS CHARTS & THEMATIC TAGS
+============================================================ */
+.bar-chart-container {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.5rem;
+  height: 180px;
+  padding: 1rem 0;
+  border-bottom: 2px solid var(--border-subtle);
+  margin-top: 1rem;
+}
+
+.bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.bar-fill {
+  width: 100%;
+  background: #0b57d0;
+  border-radius: 4px 4px 0 0;
+  transition: height 0.5s ease-in-out;
+}
+
+.bar-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* ============================================================
+   10. MODAL WINDOWS & OVERLAYS
+============================================================ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.75);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 1.5rem;
+}
+
+.modal-window {
+  background: #ffffff;
+  width: 100%;
+  max-width: 620px;
+  border-radius: 14px;
+  padding: 2.2rem;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.btn-action-submit {
+  background-color: var(--admin-blue);
+  color: #ffffff;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 0.65rem 1.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-action-cancel {
+  background-color: #f1f5f9;
+  color: #334155;
+  border: 1px solid var(--border-subtle);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.65rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .navbar-admin { padding: 1rem 1.5rem; }
+  .admin-container, .programs-container { padding: 2rem 1rem; }
+  .prototype-card { padding: 1.8rem 1.4rem; }
+  .metrics-grid { grid-template-columns: 1fr; }
+  .programs-slider { grid-template-columns: 1fr; }
+}

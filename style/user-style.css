@@ -1,0 +1,274 @@
+/* ============================================================
+   1. GLOBAL VARIABLES & RESET
+============================================================ */
+:root {
+  --user-dark: #0f172a;
+  --user-nav-bg: #1e293b;
+  --card-bg: #ffffff;
+  --border-color: #e2e8f0;
+  --text-dark: #0f172a;
+  --text-muted: #64748b;
+  --btn-blue: #0b57d0;
+  --btn-blue-hover: #084298;
+  --badge-green-bg: #dcfce7;
+  --badge-green: #15803d;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--text-dark);
+  background-color: var(--user-dark);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ============================================================
+   2. BACKGROUND IMAGE & OVERLAY LAYERS
+============================================================ */
+.volunteer-bg-wrapper {
+  position: fixed;
+  inset: 0;
+  background: url('../images/youth1.png') center/cover no-repeat;
+  z-index: 0;
+}
+
+.volunteer-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    180deg, 
+    rgba(15, 23, 42, 0.82) 0%, 
+    rgba(15, 23, 42, 0.70) 50%, 
+    rgba(15, 23, 42, 0.88) 100%
+  );
+  z-index: 1;
+}
+
+/* ============================================================
+   3. NAVIGATION BAR
+============================================================ */
+/* Dark Header Navbar */
+.navbar-volunteer {
+  position: relative;
+  z-index: 10;
+  background-color: var(--user-dark);
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-brand {
+  font-weight: 800;
+  font-size: 1.35rem;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.8rem;
+  align-items: center;
+}
+
+.nav-links a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.nav-links .logout-link {
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+  padding: 0.35rem 0.85rem;
+  border-radius: 6px;
+}
+
+.nav-links .logout-link:hover {
+  background: rgba(239, 68, 68, 0.4);
+  color: #ffffff;
+}
+
+/* ============================================================
+   4. MAIN CONTAINER & ELEVATED PROTOTYPE CARD
+============================================================ */
+/* Main Content Area */
+.user-container {
+  position: relative;
+  z-index: 5;
+  padding: 3rem 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.prototype-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 2.5rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-top: 1rem;
+}
+
+.card-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.card-title-row h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-dark);
+}
+
+.card-badge {
+  background: var(--badge-green-bg);
+  color: var(--badge-green);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   5. BUTTON CONTROLS
+============================================================ */
+/* Buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--btn-blue);
+  color: #ffffff;
+  padding: 0.8rem 1.8rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-primary:hover {
+  background-color: var(--btn-blue-hover);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  background-color: #f1f5f9;
+  color: #334155;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* ============================================================
+   6. METRICS DISPLAY ROW
+============================================================ */
+/* Quick Metrics Row */
+.metrics-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  margin: 1.5rem 0 2rem 0;
+}
+
+.metric-box {
+  background: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+}
+
+.metric-box span {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.metric-box h4 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-top: 0.25rem;
+}
+
+/* ============================================================
+   7. QR SCANNER & RETICLE VIEWPORT
+============================================================ */
+/* Scanner Frame */
+.scanner-viewport {
+  position: relative;
+  height: 320px;
+  max-width: 440px;
+  margin: 1.5rem auto;
+  background: #000000;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  overflow: hidden;
+  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.8);
+  border: 2px solid #334155;
+}
+
+.scanner-target-reticle {
+  width: 200px;
+  height: 200px;
+  border: 2px dashed #38bdf8;
+  border-radius: 12px;
+  animation: pulseScan 2s infinite ease-in-out;
+}
+
+@keyframes pulseScan {
+  0%, 100% { border-color: #38bdf8; transform: scale(1); }
+  50% { border-color: #60a5fa; transform: scale(1.03); }
+}
+
+/* ============================================================
+   8. RESPONSIVE MEDIA QUERIES
+============================================================ */
+@media (max-width: 768px) {
+  .navbar-volunteer {
+    padding: 1rem 1.5rem;
+  }
+  .prototype-card {
+    padding: 1.75rem 1.25rem;
+  }
+  .metrics-row {
+    grid-template-columns: 1fr;
+  }
+}
