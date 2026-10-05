@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Youth Profiles - SMRLYDO</title>
+  <link rel="stylesheet" href="../style/staff-style.css">
+</head>
+<body>
+
+  <div class="staff-bg-wrapper"></div>
+  <div class="staff-overlay"></div>
+
+  <nav class="navbar-staff">
+    <div class="navbar-brand">SMRLYDO &bull; Staff</div>
+    <ul class="nav-links">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="tasks.html">My Tasks</a></li>
+      <li><a href="scanner.html">QR Scanner</a></li>
+      <li><a href="forms.html">Forms</a></li>
+      <li><a href="participants.html" class="active">Participants</a></li>
+      <li><a href="../login.html" class="logout-link">Sign Out</a></li>
+    </ul>
+  </nav>
+
+  <main class="staff-container">
+    <div class="banner-heading-wrap">
+      <h1 class="banner-heading">PARTICIPANT RECORDS &amp; PROFILING</h1>
+      <button class="btn-primary" style="background:#ffffff; color:#c92a2a;" onclick="openRegisterModal()">+ Register Youth</button>
+    </div>
+
+    <div class="prototype-card">
+      <div class="card-header-row">
+        <div>
+          <h2>San Mateo Youth Registry</h2>
+          <p style="color:var(--text-muted); font-size:0.9rem; margin-top:0.3rem;">
+            Centralized youth beneficiary database with duplicate record detection.
+          </p>
+        </div>
+        <span class="badge badge-completed">Database Active</span>
+      </div>
+
+      <table class="staff-table">
+        <thead>
+          <tr>
+            <th>NAME</th>
+            <th>BARANGAY</th>
+            <th>CONTACT NUMBER</th>
+            <th>DUPLICATE CHECK</th>
+            <th>ACTION</th>
+          </tr>
+        </thead>
+        <tbody id="participantTableBody">
+          <tr>
+            <td><strong>Sofia Bianca Encisa</strong></td>
+            <td>Guitnang Bayan 1</td>
+            <td>0917-123-4567</td>
+            <td><span class="badge badge-clean">Clean</span></td>
+            <td>
+              <button class="btn-secondary" style="padding:0.35rem 0.8rem; font-size:0.8rem; color:#0b57d0;" onclick="viewYouthProfile('Sofia Bianca Encisa', 'Guitnang Bayan 1', '0917-123-4567', 'sofia@example.com', '2004-05-14', 'CSO Youth Academy (Completed), SK Mandatory Training (Passed)')">
+                View Profile
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Luis Carlo Deduyo</strong></td>
+            <td>Ampid 1</td>
+            <td>0918-987-6543</td>
+            <td><span class="badge badge-clean">Clean</span></td>
+            <td>
+              <button class="btn-secondary" style="padding:0.35rem 0.8rem; font-size:0.8rem; color:#0b57d0;" onclick="viewYouthProfile('Luis Carlo Deduyo', 'Ampid 1', '0918-987-6543', 'luis@example.com', '2003-11-20', 'Good Governance Summit (Completed)')">
+                View Profile
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <div class="modal-overlay" id="registerModal">
+    <div class="modal-window">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-color); padding-bottom:0.8rem; margin-bottom:1.2rem;">
+        <h3 style="font-size:1.3rem; font-weight:800; color:#0f172a;">Register New Youth Beneficiary</h3>
+        <button onclick="closeRegisterModal()" style="background:none; border:none; font-size:1.6rem; cursor:pointer; color:#64748b;">&times;</button>
+      </div>
+
+      <form id="registerForm" onsubmit="handleRegisterYouth(event)">
+        <div style="margin-bottom:1rem;">
+          <label style="font-size:0.85rem; font-weight:700; color:#475569;">Full Name</label>
+          <input type="text" id="regName" class="form-control" placeholder="e.g. Eldridge Shean Camaya" required>
+        </div>
+
+        <div style="margin-bottom:1rem;">
+          <label style="font-size:0.85rem; font-weight:700; color:#475569;">Barangay</label>
+          <select id="regBarangay" class="form-control">
+            <option value="Guitnang Bayan 1">Guitnang Bayan 1</option>
+            <option value="Guitnang Bayan 2">Guitnang Bayan 2</option>
+            <option value="Ampid 1">Ampid 1</option>
+            <option value="Ampid 2">Ampid 2</option>
+            <option value="Banaba">Banaba</option>
+            <option value="Malanday">Malanday</option>
+            <option value="Silangan">Silangan</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom:1rem;">
+          <label style="font-size:0.85rem; font-weight:700; color:#475569;">Contact Number</label>
+          <input type="text" id="regPhone" class="form-control" placeholder="e.g. 0919-555-4321" required>
+        </div>
+
+        <div style="margin-bottom:1rem;">
+          <label style="font-size:0.85rem; font-weight:700; color:#475569;">Email Address</label>
+          <input type="email" id="regEmail" class="form-control" placeholder="e.g. youth@gmail.com" required>
+        </div>
+
+        <div style="margin-bottom:1.5rem;">
+          <label style="font-size:0.85rem; font-weight:700; color:#475569;">Date of Birth</label>
+          <input type="date" id="regDob" class="form-control" required>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:0.8rem;">
+          <button type="button" class="btn-secondary" onclick="closeRegisterModal()">Cancel</button>
+          <button type="submit" class="btn-primary">Verify &amp; Register</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="profileModal">
+    <div class="modal-window">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-color); padding-bottom:0.8rem; margin-bottom:1.2rem;">
+        <h3 id="profNameTitle" style="font-size:1.3rem; font-weight:800; color:#0f172a;">Participant Profile</h3>
+        <button onclick="closeProfileModal()" style="background:none; border:none; font-size:1.6rem; cursor:pointer; color:#64748b;">&times;</button>
+      </div>
+
+      <div style="background:#f8fafc; border:1px solid var(--border-color); border-radius:10px; padding:1.5rem; line-height:1.7; font-size:0.9rem;">
+        <p><strong>Resident Barangay:</strong> <span id="profBarangay"></span></p>
+        <p><strong>Contact:</strong> <span id="profPhone"></span></p>
+        <p><strong>Email:</strong> <span id="profEmail"></span></p>
+        <p><strong>Date of Birth:</strong> <span id="profDob"></span></p>
+        <p style="margin-top:0.8rem;"><strong>Accredited Program Modules:</strong></p>
+        <div id="profHistory" style="background:#ffffff; padding:0.6rem; border-radius:6px; border:1px solid #e2e8f0; font-size:0.85rem; color:#475569;"></div>
+      </div>
+
+      <div style="display:flex; justify-content:flex-end; margin-top:1.5rem;">
+        <button class="btn-primary" onclick="closeProfileModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../script/staff-participants.js"></script>
+
+</body>
+</html>

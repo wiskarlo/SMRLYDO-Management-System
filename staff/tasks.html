@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preparation Tasks - SMRLYDO</title>
+  <link rel="stylesheet" href="../style/staff-style.css">
+</head>
+<body>
+
+  <div class="staff-bg-wrapper"></div>
+  <div class="staff-overlay"></div>
+
+  <nav class="navbar-staff">
+    <div class="navbar-brand">SMRLYDO &bull; Staff</div>
+    <ul class="nav-links">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="tasks.html" class="active">My Tasks</a></li>
+      <li><a href="scanner.html">QR Scanner</a></li>
+      <li><a href="forms.html">Forms</a></li>
+      <li><a href="participants.html">Participants</a></li>
+      <li><a href="../login.html" class="logout-link">Sign Out</a></li>
+    </ul>
+  </nav>
+
+  <main class="staff-container">
+    <div class="banner-heading-wrap">
+      <h1 class="banner-heading">EVENT PREPARATION TASKS</h1>
+      <button class="btn-primary" style="background:#ffffff; color:#c92a2a;" onclick="openTaskModal('add')">+ Add New Task</button>
+    </div>
+
+    <div class="prototype-card">
+      <div class="card-header-row">
+        <div>
+          <h2>Active Preparation Checklist</h2>
+          <p style="color:var(--text-muted); font-size:0.9rem; margin-top:0.3rem;">
+            Manage and update operational committee tasks and deadlines[cite: 57].
+          </p>
+        </div>
+        <span class="badge badge-completed">Task Management</span>
+      </div>
+
+      <table class="staff-table">
+        <thead>
+          <tr>
+            <th>TASK NAME</th>
+            <th>PROGRAM</th>
+            <th>DEADLINE</th>
+            <th>STATUS</th>
+            <th>ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody id="taskTableBody">
+          <tr id="task-row-1">
+            <td><strong>Print QR ID Badges</strong></td>
+            <td>CSO Youth Academy 2026</td>
+            <td>Sept 17, 2026</td>
+            <td><span class="badge badge-ongoing">In Progress</span></td>
+            <td>
+              <button class="btn-secondary" style="padding:0.3rem 0.75rem; font-size:0.8rem;" onclick="openTaskModal('edit', 'task-row-1')">Edit</button>
+              <button class="btn-secondary" style="padding:0.3rem 0.75rem; font-size:0.8rem; color:#b91c1c;" onclick="deleteTask('task-row-1')">Delete</button>
+            </td>
+          </tr>
+          <tr id="task-row-2">
+            <td><strong>Pre-Event Attendance Confirmation Calls</strong></td>
+            <td>Banaba Youth Dialogue</td>
+            <td>Sept 15, 2026</td>
+            <td><span class="badge badge-completed">Completed</span></td>
+            <td>
+              <button class="btn-secondary" style="padding:0.3rem 0.75rem; font-size:0.8rem;" onclick="openTaskModal('edit', 'task-row-2')">Edit</button>
+              <button class="btn-secondary" style="padding:0.3rem 0.75rem; font-size:0.8rem; color:#b91c1c;" onclick="deleteTask('task-row-2')">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <div class="modal-overlay" id="taskModal">
+    <div class="modal-window">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-color); padding-bottom:0.8rem; margin-bottom:1.2rem;">
+        <h3 id="taskModalHeading" style="font-size:1.3rem; font-weight:800; color:#0f172a;">Add New Task</h3>
+        <button onclick="closeTaskModal()" style="background:none; border:none; font-size:1.6rem; cursor:pointer; color:#64748b;">&times;</button>
+      </div>
+
+      <form id="taskForm" onsubmit="handleSaveTask(event)">
+        <input type="hidden" id="editTaskId">
+        <div style="margin-bottom:1rem;">
+          <label style="font-size:0.85rem; font-weight:700; color:#475569;">Task Description</label>
+          <input type="text" id="taskNameInput" class="form-control" placeholder="e.g. Prepare Training Kits" required>
+        </div>
+        <div style="margin-bottom:1rem;">
+          <label style="font-size:0.85rem; font-weight:700; color:#475569;">Target Program</label>
+          <input type="text" id="taskProgramInput" class="form-control" placeholder="e.g. CSO Youth Academy 2026" required>
+        </div>
+        <div style="margin-bottom:1rem;">
+          <label style="font-size:0.85rem; font-weight:700; color:#475569;">Deadline Date</label>
+          <input type="text" id="taskDeadlineInput" class="form-control" placeholder="e.g. Sept 20, 2026" required>
+        </div>
+        <div style="margin-bottom:1.5rem;">
+          <label style="font-size:0.85rem; font-weight:700; color:#475569;">Status</label>
+          <select id="taskStatusInput" class="form-control">
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+          </select>
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:0.8rem;">
+          <button type="button" class="btn-secondary" onclick="closeTaskModal()">Cancel</button>
+          <button type="submit" class="btn-primary">Save Task</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../script/staff-tasks.js"></script>
+
+</body>
+</html>

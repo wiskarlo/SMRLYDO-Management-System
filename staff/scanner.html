@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance Check-In Station - SMRLYDO</title>
+  <link rel="stylesheet" href="../style/staff-style.css">
+</head>
+<body>
+
+  <div class="staff-bg-wrapper"></div>
+  <div class="staff-overlay"></div>
+
+  <nav class="navbar-staff">
+    <div class="navbar-brand">SMRLYDO &bull; Staff</div>
+    <ul class="nav-links">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="tasks.html">My Tasks</a></li>
+      <li><a href="scanner.html" class="active">QR Scanner</a></li>
+      <li><a href="forms.html">Forms</a></li>
+      <li><a href="participants.html">Participants</a></li>
+      <li><a href="../login.html" class="logout-link">Sign Out</a></li>
+    </ul>
+  </nav>
+
+  <main class="staff-container">
+    <div class="banner-heading-wrap">
+      <h1 class="banner-heading">ATTENDANCE CHECK-IN STATION</h1>
+    </div>
+
+    <div class="prototype-card">
+      <div class="card-header-row">
+        <div>
+          <h2>Event Day Check-In Operations</h2>
+          <p style="color:var(--text-muted); font-size:0.9rem; margin-top:0.3rem;">
+            Real-time QR barcode verification and manual attendee search fallback.
+          </p>
+        </div>
+        <span class="badge badge-completed">CSO Youth Academy 2026</span>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem;">
+        <div style="background:#f8fafc; border:1px solid var(--border-color); border-radius:12px; padding:1.5rem; text-align:center;">
+          <h3 style="font-size:1.1rem; color:#0f172a; margin-bottom:0.75rem;">Camera Scanner Terminal</h3>
+          <div class="scanner-feed">
+            <div class="reticle"></div>
+            <p style="position:absolute; bottom:12px; font-size:0.78rem; color:#94a3b8;">[ OPTICAL STREAM ACTIVE ]</p>
+          </div>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin:1rem 0;">Position youth participant QR badge before lens.</p>
+          <button class="btn-primary" style="width:100%;" onclick="simulateQRScan()">Simulate QR Badge Scan</button>
+        </div>
+
+        <div style="background:#f8fafc; border:1px solid var(--border-color); border-radius:12px; padding:1.5rem;">
+          <h3 style="font-size:1.1rem; color:#0f172a; margin-bottom:0.5rem;">Manual Attendee Search</h3>
+          <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:1rem;">
+            Search and verify participants without smartphones or printed badges.
+          </p>
+          
+          <div style="display:flex; gap:0.5rem; margin-bottom:1rem;">
+            <input type="text" id="manualSearchInput" class="form-control" placeholder="Search by name e.g. Sofia, Luis..." oninput="filterManualSearch()">
+          </div>
+
+          <div id="manualResultsBox" style="background:#ffffff; border:1px solid var(--border-color); border-radius:8px; max-height:170px; overflow-y:auto; padding:0.5rem;">
+          </div>
+        </div>
+      </div>
+
+      <div id="scanAlertBox" style="display:none; margin-top:1.5rem; background:#dcfce7; border:1px solid #86efac; color:#15803d; padding:1rem; border-radius:8px; font-size:0.92rem; font-weight:600;">
+        Check-in Verified: <span id="confirmedAttendee"></span> &bull; Logged at <span id="checkInTime"></span>
+      </div>
+    </div>
+  </main>
+
+  <script src="../script/staff-scanner.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evaluation Form - SMRLYDO</title>
+  <link rel="stylesheet" href="../style/staff-style.css">
+</head>
+<body>
+
+  <div class="staff-bg-wrapper"></div>
+  <div class="staff-overlay"></div>
+
+  <nav class="navbar-staff">
+    <div class="navbar-brand">SMRLYDO &bull; Staff</div>
+    <ul class="nav-links">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="tasks.html">My Tasks</a></li>
+      <li><a href="scanner.html">QR Scanner</a></li>
+      <li><a href="forms.html" class="active">Forms</a></li>
+      <li><a href="participants.html">Participants</a></li>
+      <li><a href="../login.html" class="logout-link">Sign Out</a></li>
+    </ul>
+  </nav>
+
+  <main class="staff-container">
+    <div class="banner-heading-wrap">
+      <h1 class="banner-heading">EVALUATION FORM</h1>
+    </div>
+
+    <div class="prototype-card" style="position:relative;">
+      <div style="border-bottom:1px solid var(--border-color); padding-bottom:1rem;">
+        <h2 style="font-size:1.6rem; font-weight:800; color:#0f172a;">Program Evaluation</h2>
+        <p style="color:var(--text-muted); font-size:0.88rem; margin-top:0.3rem;">
+          Please rate your experience. Your feedback helps us improve future LYDO programs.
+        </p>
+      </div>
+
+      <form id="evalForm" onsubmit="handleEvaluationSubmit(event)">
+        <div class="eval-split-layout">
+          <div>
+            <div style="margin-bottom:1.6rem;">
+              <p style="font-size:0.88rem; font-weight:700; color:#1e293b; line-height:1.4;">
+                1. How satisfied are you with the program overall?<br>
+                <span style="font-weight:400; color:#64748b; font-size:0.8rem;">(1 - Very Dissatisfied, 5 - Very Satisfied)</span>
+              </p>
+              <div class="likert-scale">
+                <label><input type="radio" name="q1" value="1" required> 1</label>
+                <label><input type="radio" name="q1" value="2"> 2</label>
+                <label><input type="radio" name="q1" value="3"> 3</label>
+                <label><input type="radio" name="q1" value="4"> 4</label>
+                <label><input type="radio" name="q1" value="5"> 5</label>
+              </div>
+            </div>
+
+            <div style="margin-bottom:1.6rem;">
+              <p style="font-size:0.88rem; font-weight:700; color:#1e293b; line-height:1.4;">
+                2. How useful was the program to your personal or professional development?<br>
+                <span style="font-weight:400; color:#64748b; font-size:0.8rem;">(1 - Not Useful, 5 - Highly Useful)</span>
+              </p>
+              <div class="likert-scale">
+                <label><input type="radio" name="q2" value="1" required> 1</label>
+                <label><input type="radio" name="q2" value="2"> 2</label>
+                <label><input type="radio" name="q2" value="3"> 3</label>
+                <label><input type="radio" name="q2" value="4"> 4</label>
+                <label><input type="radio" name="q2" value="5"> 5</label>
+              </div>
+            </div>
+
+            <div style="margin-bottom:1.6rem;">
+              <p style="font-size:0.88rem; font-weight:700; color:#1e293b; line-height:1.4;">
+                3. How well-organized was the event and its preparation?<br>
+                <span style="font-weight:400; color:#64748b; font-size:0.8rem;">(1 - Poorly Organized, 5 - Excellently Organized)</span>
+              </p>
+              <div class="likert-scale">
+                <label><input type="radio" name="q3" value="1" required> 1</label>
+                <label><input type="radio" name="q3" value="2"> 2</label>
+                <label><input type="radio" name="q3" value="3"> 3</label>
+                <label><input type="radio" name="q3" value="4"> 4</label>
+                <label><input type="radio" name="q3" value="5"> 5</label>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <div style="margin-bottom:1.4rem;">
+                <label style="display:block; font-size:0.88rem; font-weight:700; color:#1e293b; margin-bottom:0.4rem;">
+                  4. What did you like about the program?
+                </label>
+                <textarea id="q4" class="form-control" rows="3" placeholder="Share your key learnings..." required></textarea>
+              </div>
+
+              <div style="margin-bottom:1.4rem;">
+                <label style="display:block; font-size:0.88rem; font-weight:700; color:#1e293b; margin-bottom:0.4rem;">
+                  5. What can we improve?
+                </label>
+                <textarea id="q5" class="form-control" rows="3" placeholder="Suggestions for upcoming events..." required></textarea>
+              </div>
+            </div>
+
+            <div style="margin-top:1rem;">
+              <button type="submit" class="btn-blue" style="width:100%; padding:0.8rem 0;">Submit</button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <div style="display:flex; justify-content:flex-end; margin-top:2rem; border-top:1px solid var(--border-color); padding-top:1.25rem;">
+        <button type="button" class="btn-primary" onclick="openCSVModal()">Import CSV</button>
+      </div>
+    </div>
+  </main>
+
+  <div class="modal-overlay" id="csvModal">
+    <div class="modal-window">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-color); padding-bottom:0.8rem; margin-bottom:1.2rem;">
+        <h3 style="font-size:1.3rem; font-weight:800; color:#0f172a;">Batch Import Evaluation CSV</h3>
+        <button onclick="closeCSVModal()" style="background:none; border:none; font-size:1.6rem; cursor:pointer; color:#64748b;">&times;</button>
+      </div>
+
+      <div style="background:#f8fafc; border:1px solid var(--border-color); border-radius:8px; padding:1.2rem; margin-bottom:1.5rem;">
+        <p style="font-size:0.85rem; color:#475569; line-height:1.5;">
+          Upload external feedback responses or paper encoded CSV files. File columns should follow: <code>participant_id, q1, q2, q3, q4, q5</code>.
+        </p>
+      </div>
+
+      <input type="file" id="csvFileInput" accept=".csv" class="form-control" style="margin-bottom:1.5rem;">
+
+      <div style="display:flex; justify-content:flex-end; gap:0.8rem;">
+        <button class="btn-secondary" onclick="closeCSVModal()">Cancel</button>
+        <button class="btn-primary" onclick="handleCSVImport()">Process & Import</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openCSVModal() {
+      document.getElementById('csvModal').style.display = 'flex';
+    }
+
+    function closeCSVModal() {
+      document.getElementById('csvModal').style.display = 'none';
+    }
+
+    function handleCSVImport() {
+      const fileInput = document.getElementById('csvFileInput');
+      if (!fileInput.files.length) {
+        alert("Please select a valid .csv file first.");
+        return;
+      }
+      alert(`Success! Imported 45 evaluations from "${fileInput.files[0].name}". Module quantitative scores and thematic tags updated.`);
+      closeCSVModal();
+    }
+
+    function handleEvaluationSubmit(e) {
+      e.preventDefault();
+      alert("Evaluation successfully encoded into M&E database! Automated sentiment tags and module credits applied.");
+      document.getElementById('evalForm').reset();
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff Dashboard - SMRLYDO</title>
+  <link rel="stylesheet" href="../style/staff-style.css">
+</head>
+<body>
+
+  <div class="staff-bg-wrapper"></div>
+  <div class="staff-overlay"></div>
+
+  <nav class="navbar-staff">
+    <div class="navbar-brand">SMRLYDO &bull; Staff</div>
+    <ul class="nav-links">
+      <li><a href="dashboard.html" class="active">Dashboard</a></li>
+      <li><a href="tasks.html">My Tasks</a></li>
+      <li><a href="scanner.html">QR Scanner</a></li>
+      <li><a href="forms.html">Forms</a></li>
+      <li><a href="participants.html">Participants</a></li>
+      <li><a href="../login.html" class="logout-link">Sign Out</a></li>
+    </ul>
+  </nav>
+
+  <main class="staff-container">
+    <div class="banner-heading-wrap">
+      <h1 class="banner-heading">STAFF WORKSPACE</h1>
+    </div>
+
+    <div class="prototype-card">
+      <div class="card-header-row">
+        <div>
+          <h2>WELCOME BACK, JASMINE!</h2>
+          <p style="color:var(--text-muted); font-size:0.9rem; margin-top:0.3rem;">
+            Field Operations & Participant Tracking Terminal.
+          </p>
+        </div>
+        <span class="badge badge-completed">Field Operations Active</span>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <span>TOTAL PROGRAMS</span>
+          <h3>12</h3>
+          <small style="color:var(--text-muted);">FEB 2026</small>
+        </div>
+        <div class="metric-card">
+          <span>CONFIRMED YOUTH</span>
+          <h3>245</h3>
+          <small style="color:#15803d; font-weight:700;">88.5% Confirmation</small>
+        </div>
+        <div class="metric-card">
+          <span>TOTAL EVALUATIONS</span>
+          <h3>198</h3>
+          <small style="color:var(--text-muted);">COMPLETE</small>
+        </div>
+        <div class="metric-card">
+          <span>AVG RATING</span>
+          <h3>78%</h3>
+          <small style="color:#15803d; font-weight:700;">HIGH</small>
+        </div>
+      </div>
+
+      <div style="margin-top:2rem;">
+        <h3 style="font-size:1.15rem; color:#0f172a; margin-bottom:1rem;">Recent Programs</h3>
+        <table class="staff-table">
+          <thead>
+            <tr>
+              <th>PROGRAM</th>
+              <th>DATE</th>
+              <th>PARTICIPANTS</th>
+              <th>STATUS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Youth Camp</strong></td>
+              <td>Sept 10</td>
+              <td>45</td>
+              <td><span class="badge badge-ongoing">Ongoing</span></td>
+            </tr>
+            <tr>
+              <td><strong>Leadership Training</strong></td>
+              <td>Sept 15</td>
+              <td>32</td>
+              <td><span class="badge badge-ongoing">Upcoming</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>
