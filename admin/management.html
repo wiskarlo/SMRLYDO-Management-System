@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proposals & User Management - SMRLYDO</title>
+  <link rel="stylesheet" href="../style/admin-style.css">
+</head>
+<body>
+
+  <div class="admin-bg-wrapper"></div>
+  <div class="admin-overlay"></div>
+
+  <nav class="navbar-admin">
+    <div class="navbar-brand">SMRLYDO &bull; Administrator</div>
+    <ul class="nav-links">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="programs.html">Programs</a></li>
+      <li><a href="management.html" class="active">Management</a></li>
+      <li><a href="reports.html">Reports</a></li>
+      <li><a href="../login.html" class="logout-link">Sign Out</a></li>
+    </ul>
+  </nav>
+
+  <main class="admin-container">
+    <div class="prototype-card">
+      <div class="card-title-row">
+        <div>
+          <h2>Program Proposals & Compliance</h2>
+        </div>
+        <div style="display:flex; gap:0.8rem; align-items:center;">
+          <button class="btn-primary" onclick="openAddProposalModal()">+ Add New Proposal</button>
+        </div>
+      </div>
+
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>PROPOSAL TITLE</th>
+            <th>SUBMITTED BY</th>
+            <th>APPROVAL STAGE</th>
+            <th>ATTACHMENT</th>
+          </tr>
+        </thead>
+        <tbody id="proposalsTableBody">
+          <tr>
+            <td><strong>SK Mandatory Training 2026 Budget</strong></td>
+            <td>Eldridge Shean Camaya</td>
+            <td><span class="badge badge-ongoing">Mayoral Approval</span></td>
+            <td>
+              <button class="btn-primary" style="padding:0.4rem 0.9rem; font-size:0.82rem;" onclick="viewProposalPDF('SK Mandatory Training 2026 Budget', 'Eldridge Shean Camaya', 'Mayoral Approval', 'documents/sk_training_budget.pdf')">
+                View PDF
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>CSO Youth Academy Module Expansion</strong></td>
+            <td>Niña Angela Binolac</td>
+            <td><span class="badge badge-completed">Final Approval</span></td>
+            <td>
+              <button class="btn-primary" style="padding:0.4rem 0.9rem; font-size:0.82rem;" onclick="viewProposalPDF('CSO Youth Academy Module Expansion', 'Niña Angela Binolac', 'Final Approval', 'documents/cso_module_expansion.pdf')">
+                View PDF
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <div class="modal-overlay" id="addProposalModal">
+    <div class="modal-window">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-subtle); padding-bottom:0.8rem; margin-bottom:1.2rem;">
+        <h4 style="font-size:1.3rem; color:#0f172a;">Submit New Program Proposal</h4>
+        <button onclick="closeAddProposalModal()" style="background:none; border:none; font-size:1.6rem; cursor:pointer; color:#64748b;">&times;</button>
+      </div>
+
+      <form id="newProposalForm" onsubmit="handleCreateProposal(event)">
+        <div style="margin-bottom:1rem;">
+          <label style="display:block; font-size:0.85rem; font-weight:700; margin-bottom:0.35rem; color:#475569;">Proposal Title</label>
+          <input type="text" id="propTitle" class="form-control" placeholder="e.g. Linggo ng Kabataan 2026 Activity Proposal" required>
+        </div>
+
+        <div style="margin-bottom:1rem;">
+          <label style="display:block; font-size:0.85rem; font-weight:700; margin-bottom:0.35rem; color:#475569;">Submitted By (Proponent / Coordinator)</label>
+          <input type="text" id="propAuthor" class="form-control" placeholder="e.g. Sofia Bianca Encisa" required>
+        </div>
+
+        <div style="margin-bottom:1rem;">
+          <label style="display:block; font-size:0.85rem; font-weight:700; margin-bottom:0.35rem; color:#475569;">Initial Approval Stage</label>
+          <select id="propStage" class="form-control">
+            <option value="Submission" selected>Proposal Submission</option>
+            <option value="Departmental Review">Departmental Review</option>
+            <option value="Budget Approval">Budget Approval</option>
+            <option value="Mayoral Approval">Mayoral Approval</option>
+            <option value="Final Approval">Final Approval</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom:1.5rem;">
+          <label style="display:block; font-size:0.85rem; font-weight:700; margin-bottom:0.35rem; color:#475569;">Document Filename / Path</label>
+          <input type="text" id="propDocPath" class="form-control" value="documents/proposal_2026.pdf" placeholder="e.g. documents/project_plan.pdf">
+          <small style="color:var(--text-muted); font-size:0.75rem; margin-top:0.25rem; display:block;">
+            Stored in your local project documents directory for municipal compliance auditing.
+          </small>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:0.8rem;">
+          <button type="button" class="btn-secondary" onclick="closeAddProposalModal()">Cancel</button>
+          <button type="submit" class="btn-primary">Add Proposal to Registry</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="pdfModal">
+    <div class="modal-window">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-subtle); padding-bottom:1rem; margin-bottom:1rem;">
+        <div>
+          <h3 id="pdfModalTitle" style="font-size:1.25rem;">Proposal Document Preview</h3>
+          <small id="pdfModalAuthor" style="color:var(--text-muted);"></small>
+        </div>
+        <button onclick="closePDFModal()" style="background:none; border:none; font-size:1.5rem; cursor:pointer; color:#64748b;">&times;</button>
+      </div>
+
+      <div style="background:#f8fafc; border:1px solid var(--border-subtle); border-radius:10px; padding:1.8rem; min-height:220px;">
+        <div style="text-align:center; border-bottom:1px dashed #cbd5e1; padding-bottom:0.8rem; margin-bottom:1.2rem;">
+          <h4 style="color:#0f172a;">MUNICIPAL GOVERNMENT OF SAN MATEO, RIZAL</h4>
+          <p style="font-size:0.8rem; color:#64748b;">LOCAL YOUTH DEVELOPMENT OFFICE (SMRLYDO)</p>
+        </div>
+
+        <p style="font-size:0.9rem; line-height:1.6; color:#334155;">
+          <strong>Executive Summary:</strong><br>
+          This document represents the formal program proposal and budget appropriation submitted pursuant to the Local Youth Development Plan (LYDP). All projected line items have been reviewed for transparency and municipal compliance.
+        </p>
+
+        <div style="margin-top:1.2rem; background:#ffffff; padding:0.8rem; border-radius:6px; border:1px solid var(--border-subtle); font-size:0.85rem; display:flex; justify-content:space-between; align-items:center;">
+          <span><strong>Approval Progression:</strong></span>
+          <span id="pdfModalStage"></span>
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; margin-top:1.5rem; align-items:center;">
+        <span id="pdfModalFilename" style="font-size:0.8rem; color:var(--text-muted);">File: documents/proposal_2026.pdf</span>
+        <div style="display:flex; gap:0.6rem;">
+          <button class="btn-secondary" onclick="alert('Downloading proposal PDF to local machine...')">⬇ Download Copy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../script/admin-management.js"> </script> 
+
+</body>
+</html>

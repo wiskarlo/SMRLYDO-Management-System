@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>M&E Reports - SMRLYDO</title>
+  <link rel="stylesheet" href="../style/admin-style.css">
+</head>
+<body>
+  <div class="admin-bg-wrapper"></div>
+  <div class="admin-overlay"></div>
+
+  <nav class="navbar-admin">
+    <div class="navbar-brand">SMRLYDO &bull; Administrator</div>
+    <ul class="nav-links">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="programs.html">Programs</a></li>
+      <li><a href="management.html">Management</a></li>
+      <li><a href="reports.html" class="active">Reports</a></li>
+      <li><a href="../login.html" class="logout-link">Sign Out</a></li>
+    </ul>
+  </nav>
+
+  <main class="admin-container">
+    <div class="prototype-card">
+      <div class="card-header-row">
+        <div>
+          <h2>M&E Analytics & Governance Reports</h2>
+        </div> <br/>
+        <div style="display:flex; gap:0.6rem; align-items:center;">
+          <select id="reportMonthSelect" class="form-control" onchange="renderSelectedMonthReport()">
+            <option value="2026-02">February 2026</option>
+            <option value="2026-01">January 2026</option>
+            <option value="2025-12">December 2025</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <span>TOTAL PROGRAMS</span>
+          <h3 id="statPrograms">4</h3>
+          <small id="statPeriodBadge" style="color:var(--admin-red); font-weight:600;">FEB 2026</small>
+        </div>
+        <div class="metric-card">
+          <span>CONFIRMED YOUTH</span>
+          <h3 id="statConfirmed">310</h3>
+          <small id="statTurnoutRate" style="color:#15803d; font-weight:600;">88.5% Turnout</small>
+        </div>
+        <div class="metric-card">
+          <span>M&E SATISFACTION</span>
+          <h3><span id="statSatisfaction">4.78</span> <small style="font-size:1rem; color:#64748b;">/ 5.0</small></h3>
+          <small style="color:#15803d; font-weight:600;">HIGH</small>
+        </div>
+        <div class="metric-card">
+          <span>FLAGGED DUPLICATES</span>
+          <h3 id="statDuplicates" style="color:#15803d;">0</h3>
+          <small style="color:#15803d; font-weight:600;">CLEAN DATABASE</small>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1.5fr 1fr; gap:2rem; margin-top:1.5rem;">
+        <div style="background:#f8fafc; padding:1.2rem; border-radius:8px; border:1px solid var(--border-color);">
+          <h4>Youth Engagement by Barangay</h4>
+          <p style="font-size:0.8rem; color:var(--text-muted);">Verified turnout across San Mateo barangays</p>
+          <div class="bar-chart-container" id="barChartContainer"></div>
+        </div>
+
+        <div style="background:#f8fafc; padding:1.2rem; border-radius:8px; border:1px solid var(--border-color);">
+          <h4>M&E Thematic Tags</h4>
+          <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:1rem;">Keyword grouping from feedback forms</p>
+          <ul id="thematicTagsList" style="list-style:none; display:flex; flex-direction:column; gap:0.75rem; font-size:0.9rem;"></ul>
+        </div>
+      </div>
+
+      <div style="margin-top:2rem;">
+        <h4>Program Attendance & Performance Summary</h4>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>PROGRAM / ACTIVITY</th>
+              <th>DATE</th>
+              <th>TARGET</th>
+              <th>ACTUAL</th>
+              <th>CHECK-IN MODE</th>
+              <th>AVG RATING</th>
+              <th>STATUS</th>
+            </tr>
+          </thead>
+          <tbody id="reportsTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script src="../script/admin-reports.js"></script>
+  
+</body>
+</html>

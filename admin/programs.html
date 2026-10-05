@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Program and Activity - SMRLYDO</title>
+  <link rel="stylesheet" href="../style/admin-style.css">
+</head>
+<body>
+
+  <div class="admin-bg-wrapper"></div>
+  <div class="admin-overlay"></div>
+
+  <nav class="navbar-admin">
+    <div class="navbar-brand">SMRLYDO &bull; Administrator</div>
+    <ul class="nav-links">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="programs.html" class="active">Programs</a></li>
+      <li><a href="management.html">Management</a></li>
+      <li><a href="reports.html">Reports</a></li>
+      <li><a href="../login.html" class="logout-link">Sign Out</a></li>
+    </ul>
+  </nav>
+
+  <main class="programs-container">
+    <div class="prototype-card">
+      <div class="card-header-row">
+        <h2>Program and Activity</h2>
+        <button class="btn-primary" onclick="openAddProgramModal()">+ Add New Program</button>
+      </div>
+
+      <div class="programs-slider" id="programsSlider">
+        
+        <div class="program-card" id="program-card-1">
+          <img src="../images/youth1.png" alt="CSO Youth Academy 2026" class="program-card-img" onerror="this.src='../images/san-mateo-bg.jpg'">
+          <div class="program-card-body">
+            <div>
+              <h3 class="card-title">Civil Society Organization (CSO) Youth Academy 2026</h3>
+              <p class="program-meta meta-date">Date: September 18–19, 2026 | 8:00 AM – 5:00 PM</p>
+              <p class="program-meta meta-loc">Location: San Mateo Municipal Hall</p>
+              <p class="program-meta meta-lead">Lead Committee: Nina Angela Binolac</p>
+            </div>
+            <div class="program-card-footer">
+              <span class="badge badge-completed">COMPLETED</span>
+              <div class="card-action-group">
+                <button class="btn-action-edit" onclick="openEditProgramModal('program-card-1')">Edit</button>
+                <button class="btn-action-delete" onclick="deleteProgram('program-card-1')">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="program-card" id="program-card-2">
+          <img src="../images/youth2.png" alt="Good Governance Summit" class="program-card-img" onerror="this.src='../images/san-mateo-bg.jpg'">
+          <div class="program-card-body">
+            <div>
+              <h3 class="card-title">Good Governance Summit: Kabataang San Mateo</h3>
+              <p class="program-meta meta-date">Date: August 12, 2026 | 9:00 AM – 4:00 PM</p>
+              <p class="program-meta meta-loc">Location: San Mateo Municipal Gymnasium, Rizal</p>
+              <p class="program-meta meta-lead">Lead Committee: Eldridge Shean Camaya</p>
+            </div>
+            <div class="program-card-footer">
+              <span class="badge badge-ongoing">ONGOING</span>
+              <div class="card-action-group">
+                <button class="btn-action-edit" onclick="openEditProgramModal('program-card-2')">Edit</button>
+                <button class="btn-action-delete" onclick="deleteProgram('program-card-2')">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="program-card" id="program-card-3">
+          <img src="../images/youth3.png" alt="Project Ready to Serve" class="program-card-img" onerror="this.src='../images/san-mateo-bg.jpg'">
+          <div class="program-card-body">
+            <div>
+              <h3 class="card-title">Project Ready to Serve: Capacity Building for SK Officials</h3>
+              <p class="program-meta meta-date">Date: September 12, 2026 | 1:00 PM – 5:00 PM</p>
+              <p class="program-meta meta-loc">Location: San Mateo Youth Development Center</p>
+              <p class="program-meta meta-lead">Lead Committee: Luis Carlo Deduyo</p>
+            </div>
+            <div class="program-card-footer">
+              <span class="badge badge-cancelled">CANCELLED</span>
+              <div class="card-action-group">
+                <button class="btn-action-edit" onclick="openEditProgramModal('program-card-3')">Edit</button>
+                <button class="btn-action-delete" onclick="deleteProgram('program-card-3')">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <div class="modal-overlay" id="addProgramModal">
+    <div class="modal-window">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-color); padding-bottom:0.8rem; margin-bottom:1.2rem;">
+        <h3 style="font-size:1.3rem; font-weight:800; color:#0f172a;">Add Program to Catalog</h3>
+        <button onclick="closeAddProgramModal()" style="background:none; border:none; font-size:1.6rem; cursor:pointer; color:#64748b;">&times;</button>
+      </div>
+
+      <form id="newProgramForm" onsubmit="handleCreateProgram(event)">
+        <div style="margin-bottom:1rem;">
+          <label style="font-size:0.85rem; font-weight:700; color:#475569;">Program Title</label> <br/>
+          <input type="text" id="progTitle" class="form-control" placeholder="e.g. Linggo ng Kabataan 2026" required>
+        </div>
+
+        <div style="margin-bottom:1rem;">
+          <label style="font-size:0.85rem; font-weight:700; color:#475569;">Date & Schedule</label> <br/>
+          <input type="text" id="progDate" class="form-control" placeholder="e.g. October 15, 2026 | 9:00 AM – 4:00 PM" required>
+        </div>
+
+        <div style="margin-bottom:1rem;">
+          <label style="font-size:0.85rem; font-weight:700; color:#475569;">Location / Venue</label> <br/>
+          <input type="text" id="progLoc" class="form-control" placeholder="e.g. Ampid 1 Barangay Gymnasium" required>
+        </div>
+
+        <div style="margin-bottom:1rem;">
+          <label style="font-size:0.85rem; font-weight:700; color:#475569;">Lead Committee / Coordinator</label> <br/>
+          <input type="text" id="progLead" class="form-control" placeholder="e.g. Sofia Bianca Encisa" required>
+        </div>
+
+        <div style="margin-bottom:1rem;">
+          <label style="font-size:0.85rem; font-weight:700; color:#475569;">Program Status</label> <br/>
+          <select id="progStatus" class="form-control">
+            <option value="ongoing">ONGOING</option>
+            <option value="completed">COMPLETED</option>
+            <option value="cancelled">CANCELLED</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom:1.5rem;">
+          <label style="font-size:0.85rem; font-weight:700; color:#475569;">Placeholder Image</label> <br/>
+          <select id="progImgSelect" class="form-control">
+            <option value="../images/youth4.png">images/youth4.png (Community Outreach)</option>
+            <option value="../images/youth1.png">images/youth1.png (CSO Youth Academy)</option>
+            <option value="../images/youth2.png">images/youth2.png (Governance Summit)</option>
+            <option value="../images/youth3.png">images/youth3.png (Capacity Building)</option>
+          </select>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:0.8rem;">
+          <button type="button" class="btn-secondary" onclick="closeAddProgramModal()">Cancel</button>
+          <button type="submit" class="btn-primary">Save Program</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="editProgramModal">
+    <div class="modal-window">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-color); padding-bottom:0.8rem; margin-bottom:1.2rem;">
+        <h3 style="font-size:1.3rem; font-weight:800; color:#0f172a;">Edit Program Details</h3>
+        <button onclick="closeEditProgramModal()" style="background:none; border:none; font-size:1.6rem; cursor:pointer; color:#64748b;">&times;</button>
+      </div>
+
+      <form id="editProgramForm" onsubmit="handleUpdateProgram(event)">
+        <input type="hidden" id="editTargetCardId">
+
+        <div style="margin-bottom:1rem;">
+          <label style="font-size:0.85rem; font-weight:700; color:#475569;">Program Title</label> <br/>
+          <input type="text" id="editProgTitle" class="form-control" required>
+        </div>
+
+        <div style="margin-bottom:1rem;">
+          <label style="font-size:0.85rem; font-weight:700; color:#475569;">Date & Schedule</label> <br/>
+          <input type="text" id="editProgDate" class="form-control" required>
+        </div>
+
+        <div style="margin-bottom:1rem;">
+          <label style="font-size:0.85rem; font-weight:700; color:#475569;">Location / Venue</label> <br/>
+          <input type="text" id="editProgLoc" class="form-control" required>
+        </div>
+
+        <div style="margin-bottom:1rem;">
+          <label style="font-size:0.85rem; font-weight:700; color:#475569;">Lead Committee / Coordinator</label> <br/>
+          <input type="text" id="editProgLead" class="form-control" required>
+        </div>
+
+        <div style="margin-bottom:1rem;">
+          <label style="font-size:0.85rem; font-weight:700; color:#475569;">Status Badge</label> <br/>
+          <select id="editProgStatus" class="form-control">
+            <option value="completed">COMPLETED</option>
+            <option value="ongoing">ONGOING</option>
+            <option value="cancelled">CANCELLED</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom:1.5rem;">
+          <label style="font-size:0.85rem; font-weight:700; color:#475569;">Image Source</label> <br/>
+          <select id="editProgImgSelect" class="form-control">
+            <option value="../images/youth1.png">images/youth1.png (CSO Youth Academy)</option>
+            <option value="../images/youth2.png">images/youth2.png (Governance Summit)</option>
+            <option value="../images/youth3.png">images/youth3.png (Capacity Building)</option>
+            <option value="../images/youth4.png">images/youth4.png (Community Outreach)</option>
+          </select>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:0.8rem;">
+          <button type="button" class="btn-secondary" onclick="closeEditProgramModal()">Cancel</button>
+          <button type="submit" class="btn-primary">Update Program</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../script/admin-programs.js"></script>
+
+</body>
+</html>
